@@ -4,6 +4,7 @@ import javax.swing.JOptionPane;
 
 import Excecoes.CondominioInvalidoException;
 import Excecoes.CondominioJaCadastradoException;
+import Excecoes.ListaVaziaCondominiosException;
 
 public class AdmCond {
 
@@ -18,7 +19,9 @@ public class AdmCond {
 			try {
 
 				opcao = Integer.parseInt(JOptionPane.showInputDialog(
-						"1 - Inserir condomínio\n " 
+
+						"0 - Imprimir condomínios cadastrados\n "
+								+ "1 - Inserir condomínio\n " 
 								+ "2 - Consultar condomínio\n " 
 								+ "3 - Aterar Dados do condomínio\n "
 								+ "4 - Excluir condomínio\n " 
@@ -26,6 +29,15 @@ public class AdmCond {
 						));
 
 				switch (opcao) {
+				case 0:
+
+					try {
+						fachada.imprimirCondominios();
+						break;
+					} catch (ListaVaziaCondominiosException e) {
+						JOptionPane.showConfirmDialog(null, e.getMessage());
+					}
+					break;
 				case 1:
 					JOptionPane.showConfirmDialog(null,
 							"Para cadastrar um condomínio informe os dados a seguir");
@@ -46,15 +58,47 @@ public class AdmCond {
 					}
 
 					break;
-
 				case 2:
+					 String cnpjj = JOptionPane.showInputDialog("Digite CNPJ para consultar um condomínio: ");
+		
+					try {
+						fachada.consultarCond(cnpjj);
+						break;
+					} catch ( CondominioInvalidoException e) {
+						JOptionPane.showConfirmDialog(null, e.getMessage());
+					}
+					break;
+
+				case 3:
+					String cnpj2 = JOptionPane.showInputDialog("Digite o CNPJ do condomínio : ");
+					String nome2 = JOptionPane.showInputDialog("Digite o nome do condomínio");
+					String end2 = JOptionPane.showInputDialog("Digite endereço do condomínio");
+					String caracteristicas2 = JOptionPane.showInputDialog("Digite as caraterísticas que o condomínio possui:");
+					String nomeSindico2 = JOptionPane.showInputDialog("Digite o nome do síndico:");
+
+					try {
+						fachada.alterarCondominio(cnpj2, nome2, end2, caracteristicas2, nomeSindico2);
+						JOptionPane.showConfirmDialog(null, "Condomínio Alterado!");
+
+					} catch (CondominioInvalidoException e) {
+						JOptionPane.showConfirmDialog(null, e.getMessage());
+					}
 
 					break;
 
 				case 4:
+					JOptionPane.showConfirmDialog(null,"Para excluir uma conta informe:" 
+							+ "\n Número do CNPJ ");
+					String numCNPJ =(JOptionPane.showInputDialog("N° da CNPJ:"));
 
+					try {
+						fachada.excluirCondominio(numCNPJ);
+					} catch (CondominioInvalidoException e) {
+						JOptionPane.showConfirmDialog(null, e.getMessage());
+					}
 					break;
 
+				
 				default:
 					break;
 				}
