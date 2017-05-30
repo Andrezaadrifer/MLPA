@@ -8,7 +8,14 @@ public class Condominio {
 	private String caracteriscas;
 	private String nomeSindico;
 
-	@Override
+	public Condominio(String cnpj, String nome, String endereco, String caracteriscas, String nomeSindico){
+		this.CNPJ = cnpj;
+		this.nome = nome;
+		this.endereco = endereco;
+		this.caracteriscas = caracteriscas;
+		this.nomeSindico = nomeSindico;
+	}
+	
 	public String toString() {
 		return "Condominio [CNPJ=" + CNPJ + ", nome=" + nome + ", endereco=" + endereco + ", caracteriscas="
 				+ caracteriscas + ", nomeSindico=" + nomeSindico + "]";

@@ -2,7 +2,6 @@ package Apresentacao;
 
 import javax.swing.JOptionPane;
 
-import Excecoes.ClienteJaCadastradoException;
 import Excecoes.CondominioInvalidoException;
 import Excecoes.CondominioJaCadastradoException;
 
@@ -38,7 +37,7 @@ public class AdmCond {
 					String nomeSindico = JOptionPane.showInputDialog("Digite o nome do síndico:");
 
 					try {
-						fachada.cadastrarClienteCondominio(cnpj, nome, end, caracteristicas, nomeSindico);
+						fachada.cadastrarCondominio(cnpj, nome, end, caracteristicas, nomeSindico);
 						JOptionPane.showConfirmDialog(null, "Condomínio Cadastrado.");
 
 					} catch (CondominioJaCadastradoException e) {
