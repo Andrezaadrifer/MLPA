@@ -33,6 +33,7 @@ public class AdmCond {
 
 					try {
 						fachada.imprimirCondominios();
+						JOptionPane.showConfirmDialog(null, "Acabou.");
 						break;
 					} catch (ListaVaziaCondominiosException e) {
 						JOptionPane.showConfirmDialog(null, e.getMessage());
@@ -43,24 +44,28 @@ public class AdmCond {
 							"Para cadastrar um condomínio informe os dados a seguir");
 
 					String cnpj = JOptionPane.showInputDialog("Digite o CNPJ do condomínio : ");
-					String nome = JOptionPane.showInputDialog("Digite o nome do condomínio");
-					String end = JOptionPane.showInputDialog("Digite endereço do condomínio");
-					String caracteristicas = JOptionPane.showInputDialog("Digite as caraterísticas que o condomínio possui:");
-					String nomeSindico = JOptionPane.showInputDialog("Digite o nome do síndico:");
 
 					try {
+						fachada.existeCond(cnpj);
+						String nome = JOptionPane.showInputDialog("Digite o nome do condomínio");
+						String end = JOptionPane.showInputDialog("Digite endereço do condomínio");
+						String caracteristicas = JOptionPane.showInputDialog("Digite as caraterísticas que o condomínio possui:");
+						String nomeSindico = JOptionPane.showInputDialog("Digite o nome do síndico:");
 						fachada.cadastrarCondominio(cnpj, nome, end, caracteristicas, nomeSindico);
 						JOptionPane.showConfirmDialog(null, "Condomínio Cadastrado.");
 
 					} catch (CondominioJaCadastradoException e) {
 
 						JOptionPane.showConfirmDialog(null, e.getMessage());
+					} catch (CondominioCnpjNullException e) {
+
+						JOptionPane.showConfirmDialog(null, e.getMessage());
 					}
 
 					break;
 				case 2:
-					 String cnpjj = JOptionPane.showInputDialog("Digite CNPJ para consultar um condomínio: ");
-		
+					String cnpjj = JOptionPane.showInputDialog("Digite CNPJ para consultar um condomínio: ");
+
 					try {
 						fachada.consultarCond(cnpjj);
 						break;
@@ -98,7 +103,7 @@ public class AdmCond {
 					}
 					break;
 
-				
+
 				default:
 					break;
 				}

@@ -15,11 +15,11 @@ public class RepositorioCondominio {
 		condominios.add(condominio);
 	}
 
-	public boolean existeCondominio(String cnpj){
-		boolean f = true;
+	public boolean existeNCondominio(String cnpj){
+		boolean f = false;
 		for(Condominio c : condominios){
 			if(cnpj.equals(c.getCNPJ())){
-				f = false;
+				f = true;
 				return f;
 			}
 		}
@@ -60,7 +60,7 @@ public class RepositorioCondominio {
 		}
 	}
 
-	public boolean listaVazia() {
+	public boolean listaNVazia() {
 		boolean f = false;
 		for(Condominio c : condominios){
 			if((c.getCNPJ()).isEmpty()){
@@ -69,5 +69,18 @@ public class RepositorioCondominio {
 			}
 		}
 		return f;
+	}
+
+	public void imprimirCond(String cnpj) {
+		for(Condominio c : condominios){
+			if(c.getCNPJ().equals(cnpj)){
+				JOptionPane.showConfirmDialog(null, "CONDOMÍNIO...\nCPF: " + c.getCNPJ()
+				+ "\nNome: " + c.getNome() 
+				+ "\nEndereço: " + c.getEndereco()
+				+ "\nCaracteristicas: "+ c.getCaracteriscas() 
+				+ "\nNome Sindico: "+ c.getNomeSindico());
+			}		
+
+		}
 	}
 }
