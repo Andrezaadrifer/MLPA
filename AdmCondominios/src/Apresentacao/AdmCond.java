@@ -31,9 +31,9 @@ public class AdmCond {
 		        	opcao = 1;
 		        }else if(n.equals( "Cadastrar condomínio")){
 		        	opcao = 2;
-		        }else if(n.equals("Consultar condomínio")){
-		        	opcao = 3;
 		        }else if(n.equals("Alterar dados do condomínio")){
+		        	opcao = 3;
+		        }else if(n.equals("Excluir condomínio ")){
 		        	opcao = 4;
 		        }else if(n.equals("Excluir condomínio ")){
 		        	opcao = 5;
