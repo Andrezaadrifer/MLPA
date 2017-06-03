@@ -11,38 +11,42 @@ public class RepositorioCondominio {
 
 	static ArrayList<Condominio> condominios = new ArrayList<Condominio>();
 
-	public void cadastrarCliente(Condominio condominio){
+	public void cadastrarCond(Condominio condominio){
 		condominios.add(condominio);
+		JOptionPane.showConfirmDialog(null, "Condomínio Cadastrado.","informação",JOptionPane.PLAIN_MESSAGE);
 	}
 
-	public boolean existeNCondominio(String cnpj){
+	public boolean existeCondominio(String cnpj){
 		boolean f = false;
 		for(Condominio c : condominios){
 			if(cnpj.equals(c.getCNPJ())){
 				f = true;
+				
 				return f;
 			}
 		}
 		return f;
 	}
 
-	public void alterarCondominio(String cnpj2, String nome2, String end2, String caracteristicas2, String nomeSindico2) {
+	public void alterarCondominio(String cnpj4, String cnpj2, String nome2, String end2, String caracteristicas2, String nomeSindico2) {
 
 		for(Condominio c : condominios){
-			if(cnpj2.equals(c.getCNPJ())){
+			if(cnpj4.equals(c.getCNPJ())){
 				c.setCNPJ(cnpj2);
 				c.setNome(nome2);
 				c.setEndereco(end2);
-				c.setNome(nome2);
+				c.setCaracteriscas(caracteristicas2);
 				c.setNomeSindico(nomeSindico2);
 			}
 		}		
+		JOptionPane.showConfirmDialog(null, "Condomínio Alterado!");
 	}
 
 	public void excluirCondominio(String numCNPJ) {
 		for (Condominio c : condominios){
-			if(numCNPJ == (c.getCNPJ())){
+			if(numCNPJ.equals(c.getCNPJ())){
 				condominios.remove(c);
+				JOptionPane.showConfirmDialog(null, "Condominio excluido","informação",JOptionPane.PLAIN_MESSAGE);
 			}
 		}
 
@@ -58,12 +62,13 @@ public class RepositorioCondominio {
 			+ "\nNome Sindico: "+ c.getNomeSindico());
 
 		}
+		JOptionPane.showConfirmDialog(null, "Fim da lista.","informação",JOptionPane.PLAIN_MESSAGE);
 	}
 
-	public boolean listaNVazia() {
+	public boolean listaVazia() {
 		boolean f = false;
 		for(Condominio c : condominios){
-			if((c.getCNPJ()).isEmpty()){
+			if(!((c.getCNPJ()).isEmpty())){
 				f = true;
 				return f;
 			}
